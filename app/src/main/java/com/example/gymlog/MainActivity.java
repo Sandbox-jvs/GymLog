@@ -12,14 +12,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.gymlog.Database.GymLog;
+import com.example.gymlog.Database.GymLogDatabase;
+import com.example.gymlog.Database.GymLogRepository;
 import com.example.gymlog.databinding.ActivityMainBinding;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+    private GymLogRepository repository;
     public static final String TAG = "DAC_GYMLOG";
     //This is a references to the viewBinding inside the app's build.gradle
-    ActivityMainBinding binding;
+    private ActivityMainBinding binding;
 
     //These are the mMembers that reference the labels we created in activity_main
     String exercise = " ";
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        repository = GymLogRepository.getRepository(getApplication());
+
         //Allows the user to scroll through their logs
         binding.logDisplayTextView.setMovementMethod(new ScrollingMovementMethod());
 
@@ -39,9 +45,15 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getInformationFromDisplay();
+                insertGymLogRecords();
                 updateDisplay();
             }
         });
+    }
+
+    private void insertGymLogRecords(){
+        GymLog log = new GymLog(reps, weight, exercise);
+        repository.insertGymLog(log);
     }
 
     /**

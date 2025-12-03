@@ -5,7 +5,7 @@ import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents queries we will run from the database
@@ -19,5 +19,5 @@ public interface GymLogDAO {
     void insert(GymLog gymlog);
 
     @Query("Select * from " + GymLogDatabase.GYM_LOG_TABLE)
-    public ArrayList<GymLog> getAllRecords();
+    List<GymLog> getAllRecords();
 }

@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 /**
- d* @author Jessica Sandoval
+ * @author Jessica Sandoval
  * @since 12/02/2025
  */
 

@@ -4,17 +4,11 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.gymlog.Database.GymLog;
-import com.example.gymlog.Database.GymLogDatabase;
-import com.example.gymlog.Database.GymLogRepository;
+import com.example.gymlog.database.entities.GymLog;
+import com.example.gymlog.database.GymLogRepository;
 import com.example.gymlog.databinding.ActivityMainBinding;
 
 import java.util.Locale;
@@ -90,5 +84,6 @@ public class MainActivity extends AppCompatActivity {
                                    "Exercise: %s%nWeight: %.2f%nReps: %d%n=-=-=-=%n%s",
                                           exercise, weight, reps, currentInfo);
         binding.logDisplayTextView.setText(newDisplay);
+        Log.i(TAG, repository.getAllLogs().toString());
     }
 }
